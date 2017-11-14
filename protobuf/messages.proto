@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+package app;
+
+message Message {
+	enum RequestType {
+		RRQ 	= 1;
+		WRQ 	= 2;
+		DATA 	= 3;
+		ACK 	= 4;
+		ERROR 	= 5;
+	}
+
+	enum ErrCode {
+		FileNotFound	= 1;
+		AccessViolation = 2;
+	}
+
+	required RequestType opCode = 1;
+	optional string	fileName = 2;
+	optional int32	blockNum = 3;
+	optional bytes	data = 4;
+	optional ErrCode errCode = 5;
+	optional string ErrMsg = 6;
+}
